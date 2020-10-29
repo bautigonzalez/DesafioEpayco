@@ -1,0 +1,28 @@
+.navbar{
+    background-color: #EF9128;
+    color: white;
+    -webkit-box-shadow: 0px 9px 21px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 9px 21px -7px rgba(0,0,0,0.75);
+    box-shadow: 0px 9px 21px -7px rgba(0,0,0,0.75);
+    .container-navbar{
+        display: flex;
+        align-items: center;
+        height: 50px;
+        font-weight: bold;
+        justify-content: space-between;
+    }
+}
+
+.navbar{
+    a{
+        color: white;
+        text-decoration: none;
+    }
+    img{
+        width: 100px;
+    }
+}
+
+.logout{
+    cursor: pointer;
+}
