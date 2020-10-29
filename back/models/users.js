@@ -1,7 +1,8 @@
 const crypto = require("crypto");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-var userSchema = new Schema({
+
+const userSchema = new Schema({
   email: {
     type: String,
     required: true,
@@ -30,7 +31,8 @@ var userSchema = new Schema({
     type: Number,
     required: true,
     unique: true,
-  }
+  },
+  wallet: { type: Schema.Types.ObjectId, ref: 'Wallets' },
 });
 
 userSchema.methods.setPassword = function (pass) {
@@ -46,5 +48,7 @@ userSchema.pre("save", function (next) {
   this.password = this.setPassword(this.password);
   next();
 });
+
 const User = mongoose.model("Users", userSchema);
+
 module.exports = User;

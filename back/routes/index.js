@@ -1,30 +1,16 @@
-  
 const express = require('express');
 const router = express.Router();
-const { User } = require('../models')
 const passport = require('passport')
+const userController = require("../controllers/users")
 
-router.post("/login", passport.authenticate("local"), (req, res, next)=>{
-    res.json(req.user)
-})
+router.post("/login", passport.authenticate("local"), userController.login)
 
-router.post("/register", (req, res, next)=>{
-  User.create(req.body)
-    .then((user)=>res.json(user))
-})
+router.post("/register", userController.register)
 
-router.get("/users", (req, res, next)=>{
-  User.find()
-   .then(users=>res.json(users))
-})
+router.get("/users", userController.findAll)
 
-router.get("/logout", function (req, res, next) {
-  req.logout();
-  res.sendStatus(200)
-});
+router.get("/logout", userController.logout);
 
-router.get("/check", (req, res, next) => {
-  res.json(req.user);
-});
+router.get("/check", userController.check);
 
 module.exports = router

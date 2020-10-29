@@ -1,3 +1,4 @@
 const User = require("./users");
+const Wallet = require("./wallets")
 
-module.exports = { User };
+module.exports = { User, Wallet };
