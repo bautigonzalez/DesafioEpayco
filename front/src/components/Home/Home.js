@@ -5,7 +5,7 @@ import "./Home.scss"
 export default () => {
     return(
         <div className="home">
-            <div className="container">
+            <div className="container container-home">
                 <div className="div-img">
                     <img src="/images/logoepayco.png" />
                 </div>

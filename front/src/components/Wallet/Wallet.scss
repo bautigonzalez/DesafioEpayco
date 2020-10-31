@@ -1,0 +1,48 @@
+.container-wallet{
+    padding-top: 10px;
+    background-color: white;    
+    border-bottom: 2px solid #eeeeee;
+    border-radius: 5px;
+    padding-bottom: 40px;
+}
+
+.wallet-options{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+    > div{
+        width: 25%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        span{
+            background-color: #EF9128;
+            border-radius: 200px;
+            padding: 16px 13px;
+            transition: 0.3s;
+            border-bottom: 2px solid #d8801b;
+            width: 60px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            img{
+                width: 60px;
+            }
+        }
+        span:hover{
+            background-color: #d8801b;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .wallet-options{
+        flex-wrap: wrap;
+        width: 90%;
+        > div{
+            width: 50%;
+            margin-bottom: 15px;
+        }
+    }
+  }

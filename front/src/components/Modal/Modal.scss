@@ -1,0 +1,103 @@
+.charge-modal {
+    overflow: auto;
+    position: absolute;
+    height: 385px;
+    width: 95%;
+    max-width: 400px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: white;
+    outline: none;
+  }
+
+  .value-modal {
+    overflow: auto;
+    position: absolute;
+    height: 320px;
+    width: 95%;
+    max-width: 400px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: white;
+    outline: none;
+  }
+
+.modal-container{
+  width: 90%;
+  margin: 0 auto;
+  > h4 {
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+.close{
+  display: flex;
+  height: 30px;
+  justify-content: flex-end;
+  align-items: center;
+  img{
+    width: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+}
+
+.result-modal{
+  overflow: auto;
+  position: absolute;
+  height: 250px;
+  width: 95%;
+  max-width: 400px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: white;
+  outline: none;
+}
+
+.success-div{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  button{
+    height: 36px;
+    border: 2px solid #EF9128;
+    background-color: white;
+    color:#EF9128;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    outline: none;
+    transition: 0.3s;
+  }
+  button:hover{
+      color: white;
+      background-color: #EF9128;
+  }
+}
+
+.success-div-img{
+  display: flex;
+  justify-content: center;
+  img{
+    height: 70px;
+  }
+}
