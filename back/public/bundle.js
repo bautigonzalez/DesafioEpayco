@@ -42535,7 +42535,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
     if (document == user.document && phone == user.phone) {
       axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/api/code", {
-        code: id
+        code: id,
+        email: user.email
       }).then(function (res) {
         return setStatus(res.status);
       }).then(function () {

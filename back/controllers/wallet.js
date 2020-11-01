@@ -26,7 +26,7 @@ const walletController = {
 
       const mailOptions = {
          from: process.env.EMAIL || "desafiepayco@gmail.com",
-         to: "batigonza@gmail.com",
+         to: req.body.email,
          subject: "Codigo de verificación",
          html:
            `<h1>Codigo de verificación</h1>

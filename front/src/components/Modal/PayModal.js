@@ -23,7 +23,7 @@ export default ({modal , setModal}) => {
         e.preventDefault()
         const id = uuidv4().substr(0,6)
         if(document == user.document && phone == user.phone){ 
-            axios.post("/api/code", {code: id})
+            axios.post("/api/code", {code: id, email: user.email})
             .then((res)=>setStatus(res.status))
             .then(()=>setCode(id))
             .then(()=>setInvalid(false))
