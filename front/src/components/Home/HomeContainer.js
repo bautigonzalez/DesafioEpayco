@@ -9,7 +9,7 @@ export default () => {
 
     return (
         <>
-        {user._id ? <Wallet/> : <Home/>}
+        {user._id ? <Wallet user={user}/> : <Home/>}
         </>
     )
 }

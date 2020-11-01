@@ -5,12 +5,12 @@ import PayModal from "../Modal/PayModal"
 import ValueModal from "../Modal/ValueModal"
 import "./Wallet.scss"
 
-export default () => {
+export default ({user}) => {
     const [modal, setModal] = useState("")
     return (
         <div className="wallet">
             <div className="container container-wallet">
-                <h2>Bienvenido, Bautista</h2>
+                <h2>Bienvenido, {user.name}</h2>
                 <h3>Opciones</h3>
                 <div className="wallet-options">
                     <div><span onClick={()=>setModal("charge")}><img src="/images/ingresar.png"/></span> Ingresar dinero</div>
