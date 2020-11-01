@@ -11,6 +11,7 @@ export default ({modal , setModal}) => {
 
     const [status, setStatus] = useState(0)
     const [value, setValue] = useState(0)
+    const [invalid, setInvalid] = useState(false)
 
     const user = useSelector(store => store.user.user)
 
@@ -22,7 +23,11 @@ export default ({modal , setModal}) => {
                 setValue(res.data.value)
                 setStatus(res.status)
             })
+            .then(()=>setInvalid(false))
             .catch((e)=>setStatus(400))
+        }
+        else{
+            setInvalid(true)
         }
     }
 
@@ -30,6 +35,7 @@ export default ({modal , setModal}) => {
         setModal("")
         setPhone("")
         setDocument("")
+        setInvalid(false)
         setStatus(0)
     }
 
@@ -53,6 +59,7 @@ export default ({modal , setModal}) => {
                         <label>Teléfono</label>
                         <input type="text" value={phone} onChange={(e)=> setPhone(e.target.value)} />
                     </div>
+                    {invalid? <p className="invalid">Datos invalidos</p> : null}
                     <div className="btn-submit">
                         <button type="submit">Enviar</button>
                     </div>   

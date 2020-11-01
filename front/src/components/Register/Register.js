@@ -6,6 +6,7 @@ import "./Register.scss"
 
 export default () => {
     const dispatch = useDispatch()
+    const history = useHistory();
 
     const [name, setName] = useState("")
     const [lastname, setLastname] = useState("")
@@ -14,10 +15,18 @@ export default () => {
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
     const [repeatPassword, setRepeatPassword] = useState("")
+    const [invalid, setInvalid] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(password === repeatPassword && password.length > 7) dispatch(register({name, lastname, document, email, phone, password}))
+        if(password === repeatPassword && password.length > 7){
+            dispatch(register({name, lastname, document, email, phone, password}))
+            .then(()=> history.push('/'))
+            .catch((e)=>setInvalid(true))
+        }
+        else{
+            setInvalid(true)
+        }
     }
 
     return (
@@ -52,8 +61,9 @@ export default () => {
                         </div>
                         <div className="div-input">
                             <label>Repetir contraseña</label>
-                            <input type="text" value={repeatPassword} onChange={(e)=>setRepeatPassword(e.target.value)} />
+                            <input type="password" value={repeatPassword} onChange={(e)=>setRepeatPassword(e.target.value)} />
                         </div>
+                        {invalid? <p className="invalid">Datos invalidos</p> : null}
                         <div className="btn-submit">
                             <button type="submit">Enviar</button>
                         </div>

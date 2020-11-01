@@ -11,12 +11,13 @@ export default () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [invalid, setInvalid] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(login(email, password))
         .then(()=> history.push('/'))
-        .catch((e)=>{if(e)setInvalid(true)})
+        .catch((e)=>setInvalid(true))
     }
 
     return (
@@ -34,6 +35,7 @@ export default () => {
                             <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
                         </div>
                         <div className="sin-cuenta"><Link to="/register">¿Aún no tienes tu cuenta? Registrate</Link></div>
+                        {invalid? <p className="invalid">Datos invalidos</p> : null}
                         <div className="btn-submit">
                             <button type="submit">Ingresar</button>
                         </div>

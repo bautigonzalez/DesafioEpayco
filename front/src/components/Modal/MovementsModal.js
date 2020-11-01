@@ -6,21 +6,24 @@ import ResultModal from "./ResultModal";
 import "./Modal.scss"
 
 export default ({modal , setModal}) => {
-    const [charge, setCharge] = useState("")
     const [document, setDocument] = useState("")
     const [phone, setPhone] = useState("")
 
     const [status, setStatus] = useState(0)
     const [invalid, setInvalid] = useState(false)
+    const [movements, setMovements] = useState([])
 
     const user = useSelector(store => store.user.user)
 
-    const sendCharge = (e) => {
+    const viewMovements = (e) => {
         e.preventDefault()
         if(document == user.document && phone == user.phone){ 
-            axios.put("/api/charge", {walletId: user.wallet, charge})
-            .then((res)=>setStatus(res.status))
-            .then(()=>setInvalid(false))
+            axios.post("/api/movements", {user: user._id})
+            .then((res)=>{
+                setInvalid(false)
+                setMovements(res.data)
+                setStatus(res.status)
+            })
             .catch((e)=>setStatus(400))
         }
         else{
@@ -32,22 +35,22 @@ export default ({modal , setModal}) => {
         setModal("")
         setPhone("")
         setDocument("")
-        setCharge("")
+        setInvalid(false)
         setStatus(0)
     }
 
     return(
         <Modal
-        isOpen={modal == "charge"}
-        className={status == 0 ? "charge-modal" : "result-modal"}
+        isOpen={modal == "movement"}
+        className={status == 0 ? "value-modal" : "movement-modal"}
         overlayClassName="Overlay"
         onRequestClose={()=>setModal("")}
         >
-            <div className="close"><img onClick={()=>setModal("")} src="/images/close.png" /></div>
+            <div className="close"><img onClick={()=>restart()} src="/images/close.png" /></div>
             { status == 0 ?
             <div className="modal-container">
-                <h4>Ingresar Dinero</h4>
-                <form onSubmit={sendCharge}>
+                <h4>Consultar movimientos</h4>
+                <form onSubmit={viewMovements}>
                     <div className="div-input">
                         <label>Documento</label>
                         <input type="text" value={document} onChange={(e)=> setDocument(e.target.value)} />
@@ -56,20 +59,29 @@ export default ({modal , setModal}) => {
                         <label>Teléfono</label>
                         <input type="text" value={phone} onChange={(e)=> setPhone(e.target.value)} />
                     </div> 
-                    <div className="div-input">
-                        <label>Monto a cargar</label>
-                        <input type="text" value={charge} onChange={(e)=> setCharge(e.target.value)} />
-                    </div>
                     {invalid? <p className="invalid">Datos invalidos</p> : null}
                     <div className="btn-submit">
-                        <button type="submit">Enviar</button>
+                        <button type="submit">Consultar</button>
                     </div>   
                 </form>               
             </div> : null}
-            {status == 201 ? 
-            <ResultModal restart={restart} result={`Su recarga fue exitosa!`} success={true} /> : null}
+            {status == 200 ? 
+            <div>
+                <h4>Movimientos</h4>
+                {movements.length ? 
+                    movements.map((movement, index) => (
+                    <div className="movement" key={index}>
+                        <span>Nro {movement._id}</span>
+                        <span style={movement.to == user._id ? {color: "green"}: {color: "red"}}>
+                            {movement.isCharge ? "Recarga" : movement.to == user._id ? "Ingreso" : "Pago"}
+                        </span>
+                        <span>${movement.value}</span></div>
+                    ))
+                    : <p>No hay movimientos</p>
+                }
+            </div> : null}
             {status == 400 ? 
-            <ResultModal restart={restart} result={"No se realizo la recarga"} success={false} /> : null}
+            <ResultModal restart={restart} result={"Error"} success={false} /> : null}
         </Modal>
     )
 }

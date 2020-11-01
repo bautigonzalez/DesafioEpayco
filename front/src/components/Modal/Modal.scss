@@ -1,7 +1,7 @@
 .charge-modal {
     overflow: auto;
     position: absolute;
-    height: 385px;
+    height: 390px;
     width: 95%;
     max-width: 400px;
     top: 0;
@@ -12,6 +12,21 @@
     background-color: white;
     outline: none;
   }
+
+.pay-modal {
+    overflow: auto;
+    position: absolute;
+    height: 470px;
+    width: 95%;
+    max-width: 400px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: white;
+    outline: none;
+}
 
   .value-modal {
     overflow: auto;
@@ -99,5 +114,62 @@
   justify-content: center;
   img{
     height: 70px;
+  }
+}
+
+.security-code-container{
+  width: 90%;
+  margin: 0 auto;
+  button{
+    margin-top: 40px;
+  }
+}
+
+.security-code{
+  text-align: center;
+  margin-top: 30px;
+  input{
+    height: 28px;
+    border-radius: 3px;
+    outline: none;
+    font-size: 17px;
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid #e1e1e1;
+  }
+  input:focus{
+    border: 1px solid #EF9128;
+  }
+}
+
+.movement{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+  margin-bottom: 15px;
+}
+
+.movement-modal{
+  overflow: auto;
+  position: absolute;
+  height: 300px;
+  width: 95%;
+  max-width: 450px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: white;
+  outline: none;
+}
+
+.invalid{
+  margin: 0;
+  color: red;
+}
+
+@media (max-width: 768px) {
+  .movement{
+    flex-direction: column;
   }
 }
