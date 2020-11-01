@@ -5,6 +5,7 @@
 - React Hooks
 - SASS y Flexbox
 - Node.js
+- Express
 - Passport
 - Nodemailer
 - Mongodb
